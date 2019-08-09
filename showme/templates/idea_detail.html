@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}album_list.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+<br><br>
+        
+            <div class="card">
+              <div class="card-header">
+                {{item.title}}    
+              </div>
+              <div class="card-body">
+                <p class="card-text" style="float:right">{{item.pub_date|date:"m.d A f"}} {{object.owner}}</p><br>
+                <p class="card-text">{{item.body|linebreaks}}</p>
+              </div>
+            </div>
+            <br>
+            
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+    </div>
+
+    {%endblock%}

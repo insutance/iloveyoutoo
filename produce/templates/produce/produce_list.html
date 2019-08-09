@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}produce.html{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+    <div class="card mb-3 text-center">
+        <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/68756247_2906032186138417_9009771940151296000_n.jpg?_nc_cat=100&_nc_oc=AQl-K9y8d93-iaFyN5FrfsZXgHwaSAtsfI38tVf8E-E97Z3-NmpVsPQXt4iuJsHIYS4&_nc_ht=scontent-icn1-1.xx&oh=d09dcd942fc0d8b8d90cf4da8e5b26a5&oe=5DDF6DAC" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">프로듀스 X 유튜버</h5>
+            <p class="card-text">매주 올라오는 대회에 유튜버라면 누구나 신청하실 수 있습니다!</p>
+        </div>
+    </div>
+
+    {% for post in post_list %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="card-img" alt="..." style="width: 370px; height: 140px; padding: 5px;">
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <a href="{% url 'produce:produce_detail' post.id %}" class="text-body"><h5 class="card-title font-weight-bold"><mark>{{post.title}}</mark></h5></a>
+                <p class="card-text">{{post.body}}</p>
+                <p class="card-text"><small class="text-muted">{{post.pub_date}}</small></p>
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

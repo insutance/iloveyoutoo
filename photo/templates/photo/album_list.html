@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}album_list.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+    <br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <a href="/showme">
+                <svg style="margin-top: -400px">
+                    <img
+                    src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/67976526_2906032179471751_1335620840623964160_o.jpg?_nc_cat=104&_nc_oc=AQnG_Fb6hBRfiprV4Ag6Rvx9XY-TnKtDq5LGRwhF3GfNcnYRYJR2ExLVy5DHiijpRVw&_nc_ht=scontent-icn1-1.xx&oh=7d29247cb0495a354770bcdb40682416&oe=5DDC59A2"
+                    width="100%" height="450"   >
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                </svg>
+                </a>
+                
+            </div>
+            <div class="carousel-item">
+            <a href="/produce">
+                <svg style="margin-top: -400px">
+                    <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/68756247_2906032186138417_9009771940151296000_n.jpg?_nc_cat=100&_nc_oc=AQl-K9y8d93-iaFyN5FrfsZXgHwaSAtsfI38tVf8E-E97Z3-NmpVsPQXt4iuJsHIYS4&_nc_ht=scontent-icn1-1.xx&oh=d09dcd942fc0d8b8d90cf4da8e5b26a5&oe=5DDF6DAC" width="100%" height="450" >
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                </svg>
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <br><br>
+    {% for item in album %}
+
+    <div class="clear_float">
+        <h2 style="display:inline"><a href="{% url 'photo:album_detail' item.id %}">{{ item.name }}</a></h2>
+        &emsp;<b><i>{{ item.description }}</i></b>
+    </div>
+
+    <hr/>
+
+    <div class="album-list">
+        {% for photo in item.photo_set.all|slice:":4" %}
+        <div class="album-list-photo" style = "display:inline-block">
+            <a href="{{ photo.get_absolute_url }}">
+            <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+      
+    {% endfor %}
+
+{% endblock %}

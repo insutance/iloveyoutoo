@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}photo_detail.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+<br><br>
+<div>
+    <h2 style="display: inline">{{ object.title }}</h2>
+    <p class="text-muted " style="float : right">{{object.owner}}<br> {{ object.upload_date|date:"y.m.d" }}</p>
+</div>
+    <hr>
+    
+    <table class="photo-detail">
+    <tr>
+    <div>
+    <iframe width="560" height="315" src="{{object.video_link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <td>
+        {% if object.description %}<p>{{ object.description|linebreaks }}</p>
+        <p style="display: none">{{ photo.update_counter }}</p>
+        <p class="card-text"><small class="text-muted">조회수 {{ photo.post_hit }}</small></p>
+        {% else %}<p>(blank)</p>{% endif %}
+        <p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p>
+    </td>
+    </tr></table>
+
+    <br/>
+    <div>
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+    </div>
+
+{% endblock %}

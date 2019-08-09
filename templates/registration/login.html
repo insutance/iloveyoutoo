@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Login</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .errornote {
+    display: block;
+    margin: 5px 0;
+    border: 1px solid #c30;
+    background: #fcf;
+    padding: 5px 25px;
+    color: #c30;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+}
+
+.aligned label {
+    float: left;
+    width: 170px;
+    padding: 3px 10px 0 0;
+}
+.form-row {
+    padding: 10px;
+    font-size: 11px;
+    border-bottom: 1px solid #eee;
+}
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+<body class="text-center">
+    <div class ="container" style = "padding:3% 18% 10% 18%">
+        <form class="form-signin" method="post" action=".">{% csrf_token %}
+            <a href="/post">
+            <img class="mb-3" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/67945287_2905908859484083_8187300632273616896_n.jpg?_nc_cat=102&_nc_oc=AQnA33fqNv2fATjkF7MYVKhzF81o2AL1mcLBnVJHzN6_lZbgKrv320cEjdMXjtWWkz0&_nc_ht=scontent-icn1-1.xx&oh=9dcf836e4f82671f4c4e3b1318786ac8&oe=5DE49376" alt="" >
+            </a>
+            <h1 class="h3 mb-4 font-weight-normal">LOGIN</h1>
+            {% if form.errors %}
+            <p class="errornote">아이디 또는 비밀번호를 다시 확인하세요.<br>
+            등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</p>
+            {% endif %}
+            <div class="form-group">
+            <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" placeholder="아이디" />
+            </div>
+            
+            <div class="form-group">  
+            <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" placeholder="비밀번호"/>
+            </div>
+            
+            <br><br>
+            <button class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
+            
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <button class="btn btn-lg btn-link btn-block" type="submit"><img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/61333513_2710177475723890_731217237251194880_n.jpg?_nc_cat=102&_nc_oc=AQnr_Ve1fwZWrZMQFeGnJCGezm879pkP1fgrbQJApJ52HWPXaFOmCfRie62YSpxe3Lk&_nc_ht=scontent-icn1-1.xx&oh=150fa4e67baa10d48276002b46036b96&oe=5DB2F075"> </button>
+            <br>
+            <a href="#" style="color: gray;">아이디 찾기</a> ㅣ <a href="#" style="color: gray;">비밀번호 찾기</a> ㅣ <a href="{% url 'register' %}" style="color: gray;">회원가입</a>
+            <p class="mt-5 mb-3 text-muted">&copy; 강남대학교</p>
+        </form>
+    </div>
+</body>
+</html>

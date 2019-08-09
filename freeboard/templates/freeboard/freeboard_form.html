@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}freeboard_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+<br><br>
+<div id="content">
+
+    <h1>게시글 올리기 - {{user}}님</h1>
+
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+    <p>게시글을 올리거나 수정할 수 있는 페이지</p>
+
+    <fieldset class="aligned">
+
+        <div class="form-row">
+            {{ form.title.label_tag }} {{ form.title }}
+        </div>
+
+        <div class="form-row">
+            {{ form.body.label_tag }} {{ form.body }}
+            
+        </div>
+
+
+
+    </fieldset>
+
+    <div class="submit-row">
+        <input type="submit" value="Submit"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById('id_freeboard').focus();</script>
+
+    </form>
+
+</div>
+{% endblock %}

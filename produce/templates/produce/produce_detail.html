@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}produce_detail.html{% endblock %}
+
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+    <div class="card" style="">
+        <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text text-center">{{ post.title }}</p>
+            <p class="text-center">{{ post.body }}</p>
+            <a href="{% url 'produce:produce_apply' %}" style="text-decoration:none"><button type="button" class="btn btn-secondary btn-lg btn-block">신청하기</button></a>
+        </div>
+    </div>
+    <br>
+    
+    <br><br>
+    <div class="alert alert-dark text-center" role="alert">
+        <h3>{{ post.title }} <br>현재 {{ apply.count }} 명의 유튜버 신청</h3>
+    </div>
+    <hr>
+    {% for post in apply %}
+        <div class="card" style="display:inline-block">
+            <iframe width="340" height="315" style="padding: 5px;" src="{{post.video_link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="card-body">
+                <p class="card-text text-center"><a href="#" class="text-dark" style="text-decoration:none">User이름</a></p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#" style="text-decoration:none"><button type="button" class="btn btn-sm btn-outline-secondary">수정</button></a>
+                        <a href="#" style="text-decoration:none"><button type="button" class="btn btn-sm btn-outline-secondary">삭제</button></a>
+                    </div>
+                    <small class="text-muted">{{ post.upload_date }}</small>
+                </div>
+            </div>
+        </div>
+        &nbsp;&nbsp;
+    {% endfor %}
+
+    
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}produce_form.html{% endblock %}
+
+{% block extrastyle %}{% endblock %}
+
+{% block content %}
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="추가하기">
+    </form>
+    
+{% endblock %}

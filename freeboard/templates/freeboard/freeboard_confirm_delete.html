@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/blog/">
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+    table {
+    border-collapse: collapse;
+    }
+
+    td, th {
+        line-height: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+        padding: 5px 15px;
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    }
+
+    table.change-list, table.change-list th, table.change-list td {
+        border: 1px solid #ccc;
+    }
+
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+    <title>ILoveUT</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+            <a class="text-muted" href="{% url 'photo:index' %}"><img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/61146465_2707254312682873_6836619136638910464_n.jpg?_nc_cat=102&_nc_ht=scontent-icn1-1.xx&oh=65f0de25fc430618ef3da8408e4f3b2c&oe=5D6286F4" width="138" height="100"></a>
+          </div>
+          <div class="col-4 text-center">
+            <a class="blog-header-logo text-dark" href="{% url 'photo:index' %}"><img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/61082517_2707254306016207_549443793103880192_n.jpg?_nc_cat=105&_nc_ht=scontent-icn1-1.xx&oh=10fe92140283d8da6ccffcee393c7472&oe=5D676987"></a>
+          </div>
+          <div class="col-4 d-flex justify-content-end align-items-center">
+            
+            {% if user.is_active %}
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'photo:photo_change'%}">{% firstof user.get_short_name user.get_username %}님</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'photo:photo_add' %}">글쓰기</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">회원가입</a>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a>
+            {% endif %}
+                     
+          </div>
+        </div>
+      </header>
+      <hr>
+<div id="content">
+<br><br>
+
+    <h1>자유게시글 지우기</h1>
+
+    <form action="." method="post">{% csrf_token %}
+        <p>정말 <strong>"{{ object }}"</strong> 를 지우시겠습니까? ?</p>
+        <input type="submit" value="네!!" />
+    </form>
+    <br>
+    <p><a href="{% url 'freeboard:freeboard_list' %}">돌아가기</a></p>
+
+  </div>
+  </body>
+</html>
